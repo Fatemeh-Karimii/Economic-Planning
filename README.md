@@ -11,6 +11,7 @@ The objective is to determine how to control the inputs and outputs of each indu
 2. Maximize total manpower usage over the five-year period (ignoring any employment limitations).
 
 The problem was modeled as a linear programming problem and solved using Python. The optimal values of the decision variables and the objective function were obtained for both cases.
-The optimal solutions for both versions of the problem were obtained using the MIP library.
-  
+
+The optimal solutions for both the primal and dual problems were obtained using the MIP library.
+
 A sensitivity analysis was conducted assuming that the external demand for each industry follows a uniform distribution over the interval [0.8, 1.2] times the average demand values provided in the problem.
