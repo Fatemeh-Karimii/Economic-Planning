@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 30 20:44:52 2023
-
-@author: Se7eN.CO
-"""
-
 from mip import *
-
 import numpy as np
 
 Year = [0, 1, 2, 3, 4, 5] 
