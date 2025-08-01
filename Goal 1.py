@@ -1,14 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 30 20:21:13 2023
-
-@author: Se7eN.CO
-"""
-
 from mip import *
 import numpy as np
 
-#پارامترها
+# Parameters
 Year = [0, 1, 2, 3, 4, 5]
 Product = ["Coal", "Steel", "Transport"]
 
@@ -18,15 +11,15 @@ e = np.array([[0, 60, 60, 60, 60, 60], [0, 60, 60, 60, 60, 60], [0, 30, 30, 30, 
 p = np.array([[300], [350], [280]])
 q = np.array([[150], [80], [100]])
 
-# تعریف مسئله
+# Problem definition
 m = Model("Economic Plan") 
 
-# متغیرهای تصمیم‌گیری
+# Decision Variables
 s = [[m.add_var(name="s[{}][{}]".format(i, t)) for t in range(7)] for i in range(3)]
 y = [[m.add_var(name="y[{}][{}]".format(i, t)) for t in range(8)] for i in range(3)]
 x = [[m.add_var(name="x[{}][{}]".format(i, t)) for t in range(7)] for i in range(3)]
 
-# محدودیت‌ها
+# Constraints
 for i in range(3):
     for t in range(6):
         m += x[i][t] + s[i][t] == xsum(c[i][j] * x[j][t+1] for j in range(3)) + \
@@ -43,11 +36,11 @@ for i in range(3):
     m += x[i][0] + s[i][0] == q[i][0]
 
 
-# تابع هدف
+# Objective Function
 m.objective = maximize(xsum(y[i][t] for i in range(3) for t in range(2,6))) 
 
 m.optimize()
-print("مقدار تابع هدف :" ,m.objective_value)
+print("Objective function value:" ,m.objective_value)
  
 for i in range(3):
     for t in range(6):
